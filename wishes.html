@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Birthday Wishes for Nav 👑</title>
+<link rel="stylesheet" href="style.css">
+<style>
+/* LETTER SECTION */
+.letter-section{padding:5rem 2rem;background:#fff;text-align:center}
+.letter-wrap{max-width:680px;margin:3rem auto 0;position:relative}
+.letter-paper{background:var(--cream2);border:1px solid var(--gold-dim);padding:3.5rem 4rem;text-align:left;position:relative;box-shadow:0 8px 40px rgba(184,134,11,0.07)}
+.letter-paper::before{content:'';position:absolute;top:-5px;left:-5px;width:20px;height:20px;border-top:1.5px solid var(--gold);border-left:1.5px solid var(--gold)}
+.letter-paper::after{content:'';position:absolute;bottom:-5px;right:-5px;width:20px;height:20px;border-bottom:1.5px solid var(--gold);border-right:1.5px solid var(--gold)}
+.lp-tr{position:absolute;top:-5px;right:-5px;width:20px;height:20px;border-top:1.5px solid var(--gold);border-right:1.5px solid var(--gold)}
+.lp-bl{position:absolute;bottom:-5px;left:-5px;width:20px;height:20px;border-bottom:1.5px solid var(--gold);border-left:1.5px solid var(--gold)}
+.letter-line{display:block;width:100%;height:0.5px;background:var(--gold-dim);margin:1.25rem 0}
+.letter-salutation{font-family:'Playfair Display',serif;font-size:1.3rem;font-style:italic;color:var(--gold);margin-bottom:1.5rem}
+.letter-body{font-family:'Playfair Display',serif;font-size:1rem;font-style:italic;color:var(--dark);line-height:2.1}
+.letter-body p{margin-bottom:1.2rem}
+.letter-sign{margin-top:2rem;font-family:'Playfair Display',serif;font-size:1.1rem;font-style:italic;color:var(--gold)}
+.letter-wax{text-align:center;margin-top:-1rem;font-size:2.5rem;opacity:0.7}
+@media(max-width:600px){.letter-paper{padding:2rem 1.5rem}}
+
+/* WISHES GRID */
+.wishes-section{padding:5rem 2rem;text-align:center;background:linear-gradient(160deg,var(--cream),var(--cream2),var(--cream3))}
+.wishes-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.5rem;max-width:900px;margin:3rem auto 0}
+.wish-card{background:#fff;border:0.5px solid var(--gold-dim);padding:2rem 1.75rem;text-align:left;position:relative;overflow:hidden;transition:transform 0.3s,box-shadow 0.3s}
+.wish-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.wish-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(184,134,11,0.1)}
+.wish-num{font-family:'Playfair Display',serif;font-size:2.5rem;font-style:italic;color:var(--gold-dim);line-height:1;margin-bottom:0.5rem}
+.wish-title{font-family:'Playfair Display',serif;font-size:1.05rem;font-style:italic;color:var(--dark);margin-bottom:0.6rem}
+.wish-text{font-size:0.88rem;color:var(--warm);line-height:1.8;font-weight:300}
+
+/* COUNTDOWN / FUN STRIP */
+.fun-strip{padding:4rem 2rem;text-align:center;background:var(--dark);border-top:0.5px solid var(--gold-dim);border-bottom:0.5px solid var(--gold-dim)}
+.fun-strip-label{font-size:10px;letter-spacing:0.5em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem}
+.fun-strip-title{font-family:'Playfair Display',serif;font-size:clamp(1.5rem,4vw,2.2rem);font-style:italic;color:var(--cream);line-height:1.5}
+.fun-strip-small{font-size:0.88rem;color:rgba(255,255,255,0.4);margin-top:0.75rem;font-weight:300;font-style:italic}
+.stats-row{display:flex;justify-content:center;gap:3rem;flex-wrap:wrap;margin-top:2.5rem}
+.stat-box{text-align:center}
+.stat-num{font-family:'Playfair Display',serif;font-size:2.5rem;color:var(--gold);font-style:italic}
+.stat-label{font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-top:4px}
+
+/* CTA */
+.cta-section{padding:4rem 2rem;text-align:center;background:#fff}
+.cta-inner{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-top:2rem}
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">Nav ❧</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="wishes.html" class="active">Wishes</a></li>
+    <li><a href="memories.html">Memories</a></li>
+    <li><a href="secret-gate.html">🔒 Secret</a></li>
+  </ul>
+  <div class="nav-burger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="wishes.html">Wishes</a></li>
+    <li><a href="memories.html">Memories</a></li>
+    <li><a href="secret-gate.html">🔒 Secret</a></li>
+  </ul>
+</div>
+
+<div class="page">
+
+<section class="page-hero">
+  <div class="page-hero-content">
+    <span class="page-hero-icon">🌿</span>
+    <div class="page-hero-label">❧ &nbsp; for the birthday queen &nbsp; ❧</div>
+    <h1 class="page-hero-title">Birthday Wishes</h1>
+    <p class="page-hero-desc">A love letter, a list of wishes, and every ounce of warmth — all yours, today.</p>
+  </div>
+</section>
+
+<!-- LETTER -->
+<section class="letter-section">
+  <div class="sec-label reveal">❧ &nbsp; a royal letter &nbsp; ❧</div>
+  <h2 class="sec-title reveal">Written just for you</h2>
+  <div class="rule reveal"><span></span><em>❧</em><span></span></div>
+  <div class="letter-wrap reveal">
+    <div class="letter-paper">
+      <div class="lp-tr"></div><div class="lp-bl"></div>
+      <div class="letter-salutation">Dear Nav,</div>
+      <span class="letter-line"></span>
+      <div class="letter-body">
+        <p>Another year around the sun, and the sun is honestly lucky to have you orbit it. You make every room louder, every gathering warmer, and every inside joke much funnier just by showing up.</p>
+        <p>I know you — the one who somehow talks for hours with the close ones and can't even talk in the bus , who laughs at her own jokes before she even finishes them, and somehow makes total chaos feel like home.</p>
+        <p>On this birthday, I want you to know that you are deeply, genuinely celebrated — not just today, but every single ordinary day that you make extraordinary simply by existing in it.</p>
+        <p>May this year bring you everything you want: great food, great music, great drama to discuss at length, You deserve all of it.</p>
+        <p>Happy Birthday, Nav! The kingdom wouldn't be the same without you. 👑</p>
+      </div>
+      <span class="letter-line"></span>
+      <div class="letter-sign">With so much love ❧</div>
+    </div>
+    <div class="letter-wax">🪙</div>
+  </div>
+</section>
+
+<!-- STATS STRIP -->
+<section class="fun-strip">
+  <div class="fun-strip-label">❧ &nbsp; the royal census &nbsp; ❧</div>
+  <div class="fun-strip-title reveal">By the numbers — a scientific study of Nav</div>
+  <div class="fun-strip-small reveal">Data rigorously collected over years of close observation</div>
+  <div class="stats-row">
+    <div class="stat-box reveal">
+      <div class="stat-num">∞</div>
+      <div class="stat-label">Stories retold dramatically</div>
+    </div>
+    <div class="stat-box reveal">
+      <div class="stat-num">100%</div>
+      <div class="stat-label">Of rooms instantly upgraded</div>
+    </div>
+    <div class="stat-box reveal">
+      <div class="stat-num">0</div>
+      <div class="stat-label">Times she was on time</div>
+    </div>
+    <div class="stat-box reveal">
+      <div class="stat-num">💛</div>
+      <div class="stat-label">Hearts given away freely</div>
+    </div>
+  </div>
+</section>
+
+<!-- WISHES GRID -->
+<section class="wishes-section">
+  <div class="sec-label reveal">❧ &nbsp; birthday wishes &nbsp; ❧</div>
+  <h2 class="sec-title reveal">Things I wish for you, this year</h2>
+  <div class="rule reveal"><span></span><em>❧</em><span></span></div>
+  <div class="wishes-grid">
+    <div class="wish-card reveal">
+      <div class="wish-num">01</div>
+      <div class="wish-title">Unbothered energy</div>
+      <p class="wish-text">May you walk through every situation this year with the confidence .</p>
+    </div>
+    <div class="wish-card reveal">
+      <div class="wish-num">03</div>
+      <div class="wish-title">Doors that open</div>
+      <p class="wish-text">Every opportunity you've been building toward — may this be the year it all clicks into place. You've been ready for a while. The world is catching up.</p>
+    </div>
+    <div class="wish-card reveal">
+      <div class="wish-num">04</div>
+      <div class="wish-title">Rest that actually feels like rest</div>
+      <p class="wish-text">Not the kind where you're thinking about seventeen other things. Real, deep, 'woke up and forgot what day it is' rest. You've earned it.</p>
+    </div>
+    <div class="wish-card reveal">
+      <div class="wish-num">05</div>
+      <div class="wish-title">Plot twists in your favour</div>
+      <p class="wish-text">May this year have surprises — good ones, the kind that make you call me immediately and say "you are NOT going to believe this."</p>
+    </div>
+    <div class="wish-card reveal">
+      <div class="wish-num">06</div>
+      <div class="wish-title">All the joy</div>
+      <p class="wish-text">The full, ridiculous, spilling-over kind. The kind that makes you laugh until you can't explain what you're laughing at anymore. That kind. All year.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="sec-label reveal">❧ &nbsp; keep exploring &nbsp; ❧</div>
+  <h2 class="sec-title reveal">There's more waiting for you</h2>
+  <div class="rule reveal"><span></span><em>❧</em><span></span></div>
+  <div class="cta-inner">
+    <a href="memories.html" class="btn-gold">Our Memories ❧</a>
+    <a href="secret-gate.html" class="btn-outline">🔒 Secret Chamber</a>
+  </div>
+</section>
+
+</div>
+
+<site-footer>
+  <div class="footer-name">Nav ❧</div>
+  <ul class="footer-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="wishes.html">Wishes</a></li>
+    <li><a href="memories.html">Memories</a></li>
+    <li><a href="secret-gate.html">🔒 Secret</a></li>
+  </ul>
+  <div class="footer-copy">❧ &nbsp; Happy Birthday &nbsp; ❧</div>
+</site-footer>
+
+<script>
+function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open')}
+const revs=document.querySelectorAll('.reveal');
+const io=new IntersectionObserver(e=>e.forEach(el=>{if(el.isIntersecting){el.target.classList.add('visible');io.unobserve(el.target)}}),{threshold:0.1});
+revs.forEach(r=>io.observe(r));
+</script>
+</body>
+</html>

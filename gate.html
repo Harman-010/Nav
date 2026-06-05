@@ -1,0 +1,344 @@
+cat > /mnt/user-data/outputs/royal-sister-site/gate.html << 'HTMLEOF'
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Who goes there? 👑</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--gold:#b8860b;--gold-light:#d4a843;--gold-dim:rgba(184,134,11,0.2);--gold-faint:rgba(184,134,11,0.07);--cream:#fef9ef;--cream2:#fdf3dc;--cream3:#f5e9c8;--dark:#2c1f00;--warm:#7a5c1e;--red:#c0392b}
+html,body{height:100%;overflow:hidden}
+body{background:var(--cream);font-family:'Jost',sans-serif;display:flex;align-items:center;justify-content:center;min-height:100vh;background-image:radial-gradient(circle,rgba(184,134,11,0.04) 1px,transparent 1px);background-size:24px 24px}
+.scene{display:flex;align-items:flex-end;justify-content:center;gap:1.5rem;width:100%;max-width:820px;padding:1rem 1rem 0}
+.guard-wrap{flex-shrink:0;display:flex;flex-direction:column;align-items:center;width:110px}
+.guard-svg{width:110px;height:200px;transition:all 0.3s ease}
+.guard-bubble{background:var(--cream2);border:0.5px solid var(--gold-dim);padding:8px 12px;font-size:11px;font-style:italic;color:var(--warm);max-width:150px;text-align:center;line-height:1.5;margin-bottom:8px;position:relative;font-family:'Playfair Display',serif;min-height:48px;border-radius:2px;transition:all 0.3s}
+.guard-bubble.angry{background:#fff0f0;border-color:rgba(192,57,43,0.3);color:var(--red)}
+.guard-bubble::after{content:'';position:absolute;bottom:-7px;left:50%;transform:translateX(-50%);border:7px solid transparent;border-top-color:var(--gold-dim)}
+.card{background:var(--cream2);border:1px solid var(--gold-dim);width:100%;max-width:420px;padding:2rem 1.75rem;text-align:center;position:relative;flex:1}
+.card::before{content:'';position:absolute;top:-5px;left:-5px;width:16px;height:16px;border-top:1.5px solid var(--gold);border-left:1.5px solid var(--gold)}
+.card::after{content:'';position:absolute;bottom:-5px;right:-5px;width:16px;height:16px;border-bottom:1.5px solid var(--gold);border-right:1.5px solid var(--gold)}
+.corner-tr{position:absolute;top:-5px;right:-5px;width:16px;height:16px;border-top:1.5px solid var(--gold);border-right:1.5px solid var(--gold)}
+.corner-bl{position:absolute;bottom:-5px;left:-5px;width:16px;height:16px;border-bottom:1.5px solid var(--gold);border-left:1.5px solid var(--gold)}
+.face-wrap{width:80px;height:80px;margin:0 auto 1.25rem}
+.face-svg{width:100%;height:100%}
+.gate-label{font-size:10px;letter-spacing:0.45em;text-transform:uppercase;color:var(--gold);margin-bottom:0.5rem}
+.gate-title{font-family:'Playfair Display',serif;font-size:1.4rem;font-style:italic;color:var(--dark);margin-bottom:0.25rem;line-height:1.3}
+.gate-sub{font-size:0.82rem;color:var(--warm);margin-bottom:1.5rem;font-weight:300}
+.q-text{font-family:'Playfair Display',serif;font-size:1rem;font-style:italic;color:var(--dark);line-height:1.6;margin-bottom:1rem;min-height:52px;transition:opacity 0.3s}
+.options{display:flex;flex-direction:column;gap:0.5rem}
+.opt-btn{background:transparent;border:0.5px solid var(--gold-dim);padding:9px 14px;font-family:'Jost',sans-serif;font-size:0.85rem;color:var(--warm);cursor:pointer;text-align:left;transition:background 0.2s,border-color 0.2s,color 0.2s,transform 0.2s;border-radius:2px}
+.opt-btn:hover:not(:disabled){background:var(--gold-faint);border-color:var(--gold);color:var(--dark)}
+.opt-btn.correct{background:#f0fff4;border-color:#22c55e;color:#166534;pointer-events:none}
+.opt-btn.wrong{background:#fff0f0;border-color:var(--red);color:var(--red);animation:shake 0.4s ease;pointer-events:none}
+.opt-btn.dimmed{opacity:0.3;pointer-events:none}
+.progress-wrap{display:flex;justify-content:center;gap:6px;margin-bottom:1rem}
+.prog-dot{width:6px;height:6px;border-radius:50%;background:var(--gold-dim);transition:background 0.3s}
+.prog-dot.done{background:var(--gold)}
+.tries-wrap{font-size:11px;color:var(--red);min-height:18px;margin-bottom:0.5rem;font-style:italic;opacity:0;transition:opacity 0.3s}
+.tries-wrap.show{opacity:1}
+.reveal-overlay{position:fixed;inset:0;background:var(--cream);display:flex;align-items:center;justify-content:center;z-index:100;opacity:0;pointer-events:none;transition:opacity 0.8s ease;flex-direction:column;gap:1rem;text-align:center;padding:2rem}
+.reveal-overlay.show{opacity:1;pointer-events:all}
+.reveal-crown{font-size:3rem;animation:bounce 0.8s ease infinite alternate}
+.reveal-title{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,5vw,2.5rem);font-style:italic;color:var(--dark)}
+.reveal-sub{font-size:0.88rem;color:var(--warm);font-weight:300}
+.reveal-btn{margin-top:0.75rem;font-family:'Jost',sans-serif;font-size:10px;letter-spacing:0.4em;text-transform:uppercase;color:var(--cream);background:var(--gold);padding:12px 30px;border:none;cursor:pointer;transition:background 0.3s;border-radius:2px}
+.reveal-btn:hover{background:var(--dark)}
+@keyframes bounce{from{transform:translateY(0)}to{transform:translateY(-8px)}}
+@keyframes shake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.fade-in{animation:fadeIn 0.35s ease both}
+@media(max-width:600px){.scene{flex-direction:column;align-items:center;overflow-y:auto;height:100vh;padding-bottom:2rem}html,body{overflow:auto}.guard-wrap{flex-direction:row;gap:0.75rem;align-items:flex-end;width:100%;max-width:420px}.guard-svg{width:70px;height:130px}.guard-bubble{margin-bottom:0;flex:1;text-align:left}.guard-bubble::after{display:none}}
+</style>
+</head>
+<body>
+<div class="scene">
+  <div class="guard-wrap">
+    <div class="guard-bubble" id="guardBubble">State your business at the royal gates...</div>
+    <svg class="guard-svg" id="guardSvg" viewBox="0 0 110 200" xmlns="http://www.w3.org/2000/svg">
+      <g id="guardHat">
+        <rect x="28" y="8" width="54" height="62" rx="4" fill="#1a1a1a"/>
+        <rect x="22" y="66" width="66" height="10" rx="2" fill="#2d2d2d"/>
+        <rect x="44" y="22" width="22" height="18" rx="2" fill="#d4a843"/>
+        <text x="55" y="35" text-anchor="middle" font-size="10" fill="#1a1a1a" font-weight="bold">✦</text>
+        <path d="M32,76 Q28,90 32,96" fill="none" stroke="#8B7355" stroke-width="2"/>
+        <path d="M78,76 Q82,90 78,96" fill="none" stroke="#8B7355" stroke-width="2"/>
+      </g>
+      <rect x="32" y="70" width="46" height="42" rx="8" fill="#fde68a"/>
+      <circle id="gCheekL" cx="38" cy="98" r="6" fill="#fca5a5" opacity="0"/>
+      <circle id="gCheekR" cx="72" cy="98" r="6" fill="#fca5a5" opacity="0"/>
+      <path id="gBrowL" d="M38,80 Q44,76 50,80" fill="none" stroke="#92400e" stroke-width="2" stroke-linecap="round"/>
+      <path id="gBrowR" d="M60,80 Q66,76 72,80" fill="none" stroke="#92400e" stroke-width="2" stroke-linecap="round"/>
+      <ellipse id="gEyeL" cx="44" cy="87" rx="4.5" ry="5" fill="#92400e"/>
+      <ellipse id="gEyeR" cx="66" cy="87" rx="4.5" ry="5" fill="#92400e"/>
+      <circle cx="45" cy="86" r="1.5" fill="#fff"/>
+      <circle cx="67" cy="86" r="1.5" fill="#fff"/>
+      <path id="gMouth" d="M42,103 Q55,112 68,103" fill="none" stroke="#92400e" stroke-width="2" stroke-linecap="round"/>
+      <path id="gSweat" d="M78,82 Q81,78 78,74 Q75,78 78,82Z" fill="#93c5fd" opacity="0"/>
+      <rect x="22" y="112" width="66" height="70" rx="4" fill="#c0392b"/>
+      <circle cx="55" cy="124" r="3" fill="#d4a843"/><circle cx="55" cy="136" r="3" fill="#d4a843"/>
+      <circle cx="55" cy="148" r="3" fill="#d4a843"/><circle cx="55" cy="160" r="3" fill="#d4a843"/>
+      <rect x="14" y="112" width="16" height="8" rx="2" fill="#d4a843"/>
+      <rect x="80" y="112" width="16" height="8" rx="2" fill="#d4a843"/>
+      <path d="M55,112 L40,130 L55,125Z" fill="#8b2020"/>
+      <path d="M55,112 L70,130 L55,125Z" fill="#8b2020"/>
+      <rect x="22" y="162" width="66" height="8" rx="1" fill="#f5f5f5"/>
+      <rect x="49" y="162" width="12" height="8" fill="#d4a843"/>
+      <g id="guardArmL"><rect x="6" y="112" width="18" height="50" rx="6" fill="#c0392b"/><rect x="6" y="152" width="18" height="14" rx="4" fill="#fde68a"/><rect x="10" y="50" width="4" height="120" rx="2" fill="#8B7355"/><polygon points="12,44 8,58 16,58" fill="#d4a843"/></g>
+      <g id="guardArmR"><rect x="86" y="112" width="18" height="50" rx="6" fill="#c0392b"/><rect x="86" y="152" width="18" height="14" rx="4" fill="#fde68a"/></g>
+      <rect x="30" y="178" width="20" height="22" rx="3" fill="#1a1a1a"/><rect x="60" y="178" width="20" height="22" rx="3" fill="#1a1a1a"/>
+      <rect x="28" y="192" width="24" height="10" rx="3" fill="#0d0d0d"/><rect x="58" y="192" width="24" height="10" rx="3" fill="#0d0d0d"/>
+      <g id="gSalute" opacity="0"><rect x="82" y="82" width="16" height="10" rx="4" fill="#fde68a"/></g>
+      <text id="gSparkle1" x="4" y="60" font-size="14" fill="#d4a843" opacity="0">✦</text>
+      <text id="gSparkle2" x="90" y="48" font-size="10" fill="#d4a843" opacity="0">✦</text>
+      <!-- STOP HAND for wrong answers -->
+      <g id="gStop" opacity="0">
+        <rect x="82" y="90" width="18" height="22" rx="4" fill="#fde68a"/>
+        <line x1="91" y1="90" x2="91" y2="112" stroke="#92400e" stroke-width="1"/>
+      </g>
+    </svg>
+  </div>
+
+  <div class="card">
+    <div class="corner-tr"></div><div class="corner-bl"></div>
+    <div class="face-wrap">
+      <svg class="face-svg" id="faceSvg" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="12,28 22,16 32,26 40,12 48,26 58,16 68,28" fill="#d4a843"/>
+        <circle cx="40" cy="14" r="3.5" fill="#ef4444"/>
+        <circle cx="40" cy="52" r="26" fill="#fde68a"/>
+        <circle cx="40" cy="52" r="26" fill="none" stroke="#92400e" stroke-width="1.5"/>
+        <circle id="fCheekL" cx="22" cy="58" r="6" fill="#fca5a5" opacity="0"/>
+        <circle id="fCheekR" cx="58" cy="58" r="6" fill="#fca5a5" opacity="0"/>
+        <path id="fBrowL" d="M26,41 Q32,37 38,41" fill="none" stroke="#92400e" stroke-width="1.8" stroke-linecap="round"/>
+        <path id="fBrowR" d="M42,41 Q48,37 54,41" fill="none" stroke="#92400e" stroke-width="1.8" stroke-linecap="round"/>
+        <ellipse id="fEyeL" cx="32" cy="48" rx="4" ry="4.5" fill="#92400e"/>
+        <ellipse id="fEyeR" cx="48" cy="48" rx="4" ry="4.5" fill="#92400e"/>
+        <circle cx="33" cy="47" r="1.5" fill="#fff"/>
+        <circle cx="49" cy="47" r="1.5" fill="#fff"/>
+        <path id="fMouth" d="M30,63 Q40,72 50,63" fill="none" stroke="#92400e" stroke-width="1.8" stroke-linecap="round"/>
+        <path id="fSweat" d="M60,40 Q62,36 60,32 Q58,36 60,40Z" fill="#93c5fd" opacity="0"/>
+        <text id="fSparkle" x="63" y="42" font-size="9" fill="#d4a843" opacity="0">✦</text>
+      </svg>
+    </div>
+    <div class="gate-label">❧ &nbsp; Royal Access Required &nbsp; ❧</div>
+    <h1 class="gate-title" id="gateTitle">Halt! Who goes there?</h1>
+    <p class="gate-sub">Answer correctly to enter the royal celebration</p>
+    <div class="progress-wrap" id="progressWrap"></div>
+    <div class="tries-wrap" id="triesWrap"></div>
+    <div class="q-text" id="qText"></div>
+    <div class="options" id="options"></div>
+  </div>
+</div>
+
+<div class="reveal-overlay" id="revealOverlay">
+  <div class="reveal-crown">👑</div>
+  <div class="reveal-title">Access Granted,<br>Your Highness! ✦</div>
+  <div class="reveal-sub">The royal birthday awaits...</div>
+  <button class="reveal-btn" onclick="window.location.href='index.html'">Enter the celebration ❧</button>
+</div>
+
+<script>
+/* ══════════════════════════════════════════
+   HOW TO EDIT QUESTIONS
+   ══════════════════════════════════════════
+   Each question:
+   - q: the question text
+   - correct: index of the correct answer (0 = first, 1 = second, 2 = third)
+   - opts: array of answers, each with:
+       text: button label
+       mood: "happy" "excited" "laugh" "suspicious" "confused" "sleepy" "proud" "angry"
+       reaction: guard speech bubble text
+
+   WRONG answers use the wrongReaction field at question level.
+   The guard will block, shake, and roast her — then she retries.
+   ══════════════════════════════════════════ */
+
+const questions = [
+  {
+    q: "Are you the birthday girl?",
+    correct: 0,
+    wrongReactions: [
+      "HALT! Access denied! Only the birthday royalty may pass! 🛑",
+      "Nice try. The crown sees through your deception. 👀",
+      "I was BORN to guard this gate. Try again."
+    ],
+    opts: [
+      { text: "Yes, obviously 👑",       mood:"excited", reaction:"Your Highness! We've been expecting you! ✦" },
+      { text: "No, I'm her friend 😅",  mood:"suspicious",   reaction:"IMPOSTOR! Back to the queue! 🛑" },
+      { text: "I am boy 🤐",    mood:"angry",   reaction:"The fifth is not accepted at royal gates! 🛑" }
+    ]
+  },
+  {
+    q: "What is today?",
+    correct: 1,
+    wrongReactions: [
+      "WRONG! The guard is appalled. Try again! 🛑",
+      "Absolutely not. What is wrong with you? Retry! 😤",
+      "The crown weeps. Answer correctly! 🛑"
+    ],
+    opts: [
+      { text: "Just a normal saturday😴", mood:"angry",   reaction:"NORMAL?! The guard is offended. Retry! 🛑" },
+      { text: "The best birthday ever 👑", mood:"excited", reaction:"CORRECT! The kingdom rejoices! ✦" },
+      { text: "A day like any other 🤷",  mood:"angry",   reaction:"UNACCEPTABLE. This day is legendary! 🛑" }
+    ]
+  },
+  {
+    q: "How fabulous are you on a scale of 1 to 10?",
+    correct: 2,
+    wrongReactions: [
+      "The guard is horrified by your underestimation. Try again! 🛑",
+      "Impossible. You are clearly a 10. Retry! 😤",
+      "The crown demands confidence! Answer again! 🛑"
+    ],
+    opts: [
+      { text: "Maybe a 7? 🤔",            mood:"angry",   reaction:"A SEVEN?! Guards, seize her! 🛑" },
+      { text: "Probably an 8 😊",         mood:"angry",   reaction:"PROBABLY?! Unacceptable. Retry! 🛑" },
+      { text: "An eternal 10, obviously 💅", mood:"angry", reaction:"that's,not acceptable answer! ✦" },
+      { text: "0.00000000001", mood:"proud", reaction:"Correct! The only acceptable answer! ✦" }
+    ]
+  },
+  {
+    q: "Final test — will today be the best day ever?",
+    correct: 0,
+    wrongReactions: [
+      "WRONG! The guard refuses to let negativity through! 🛑",
+      "The crown is deeply upset. Try again! 😤",
+      "Absolutely not. Be more royal! Retry! 🛑"
+    ],
+    opts: [
+      { text: "Obviously yes, 100% 🎉",   mood:"excited", reaction:"PERFECT! Access fully granted! ✦" },
+      { text: "Maybe, we'll see 🙈",      mood:"angry",   reaction:"MAYBE?! The guard is outraged! 🛑" },
+      { text: "I'm not sure tbh 😬",      mood:"angry",   reaction:"NOT SURE?! On your birthday?! 🛑" }
+    ]
+  }
+];
+
+const faceMoods = {
+  happy:     { bL:"M26,39 Q32,35 38,39", bR:"M42,39 Q48,35 54,39", mouth:"M30,63 Q40,74 50,63", eyeRy:"4.5", cheek:1, sweat:0, sparkle:1 },
+  excited:   { bL:"M26,37 Q32,33 38,37", bR:"M42,37 Q48,33 54,37", mouth:"M26,61 Q40,76 54,61", eyeRy:"5",   cheek:1, sweat:0, sparkle:1 },
+  suspicious:{ bL:"M26,40 Q32,38 38,42", bR:"M42,38 Q48,40 54,42", mouth:"M33,66 Q40,63 47,66", eyeRy:"3",   cheek:0, sweat:0, sparkle:0 },
+  confused:  { bL:"M26,39 Q32,36 38,41", bR:"M42,36 Q48,39 54,37", mouth:"M33,66 Q40,62 47,67", eyeRy:"4",   cheek:0, sweat:1, sparkle:0 },
+  sleepy:    { bL:"M26,41 Q32,39 38,41", bR:"M42,41 Q48,39 54,41", mouth:"M33,65 Q40,69 47,65", eyeRy:"2.5", cheek:0, sweat:0, sparkle:0 },
+  laugh:     { bL:"M26,37 Q32,33 38,37", bR:"M42,37 Q48,33 54,37", mouth:"M26,61 Q40,78 54,61", eyeRy:"2.5", cheek:1, sweat:0, sparkle:1 },
+  proud:     { bL:"M26,36 Q32,32 38,36", bR:"M42,36 Q48,32 54,36", mouth:"M30,63 Q40,74 50,63", eyeRy:"4.5", cheek:1, sweat:0, sparkle:1 },
+  angry:     { bL:"M26,43 Q32,40 38,43", bR:"M42,43 Q48,40 54,43", mouth:"M33,68 Q40,64 47,68", eyeRy:"3.5", cheek:0, sweat:0, sparkle:0 }
+};
+
+const guardMoods = {
+  happy:     { bL:"M38,80 Q44,76 50,80", bR:"M60,80 Q66,76 72,80", mouth:"M42,103 Q55,112 68,103", eyeRy:"5",   cheek:1, sweat:0, sparkle:1, salute:0, stop:0 },
+  excited:   { bL:"M38,77 Q44,73 50,77", bR:"M60,77 Q66,73 72,77", mouth:"M38,102 Q55,115 72,102", eyeRy:"5.5", cheek:1, sweat:0, sparkle:1, salute:1, stop:0 },
+  suspicious:{ bL:"M38,82 Q44,80 50,84", bR:"M60,80 Q66,82 72,84", mouth:"M46,106 Q55,103 64,106", eyeRy:"3",   cheek:0, sweat:0, sparkle:0, salute:0, stop:0 },
+  proud:     { bL:"M38,76 Q44,72 50,76", bR:"M60,76 Q66,72 72,76", mouth:"M42,103 Q55,112 68,103", eyeRy:"5.5", cheek:1, sweat:0, sparkle:1, salute:1, stop:0 },
+  laugh:     { bL:"M38,77 Q44,73 50,77", bR:"M60,77 Q66,73 72,77", mouth:"M38,101 Q55,116 72,101", eyeRy:"3",   cheek:1, sweat:0, sparkle:1, salute:0, stop:0 },
+  angry:     { bL:"M38,85 Q44,81 50,85", bR:"M60,85 Q66,81 72,85", mouth:"M44,108 Q55,104 66,108", eyeRy:"3",   cheek:0, sweat:0, sparkle:0, salute:0, stop:1 }
+};
+
+function setFace(name){
+  const m=faceMoods[name]||faceMoods.happy;
+  document.getElementById('fBrowL').setAttribute('d',m.bL);
+  document.getElementById('fBrowR').setAttribute('d',m.bR);
+  document.getElementById('fMouth').setAttribute('d',m.mouth);
+  document.getElementById('fEyeL').setAttribute('ry',m.eyeRy);
+  document.getElementById('fEyeR').setAttribute('ry',m.eyeRy);
+  document.getElementById('fCheekL').style.opacity=m.cheek;
+  document.getElementById('fCheekR').style.opacity=m.cheek;
+  document.getElementById('fSweat').style.opacity=m.sweat;
+  document.getElementById('fSparkle').style.opacity=m.sparkle;
+}
+
+function setGuard(name,speech){
+  const m=guardMoods[name]||guardMoods.happy;
+  document.getElementById('gBrowL').setAttribute('d',m.bL);
+  document.getElementById('gBrowR').setAttribute('d',m.bR);
+  document.getElementById('gMouth').setAttribute('d',m.mouth);
+  document.getElementById('gEyeL').setAttribute('ry',m.eyeRy);
+  document.getElementById('gEyeR').setAttribute('ry',m.eyeRy);
+  document.getElementById('gCheekL').style.opacity=m.cheek;
+  document.getElementById('gCheekR').style.opacity=m.cheek;
+  document.getElementById('gSweat').style.opacity=m.sweat;
+  document.getElementById('gSparkle1').style.opacity=m.sparkle;
+  document.getElementById('gSparkle2').style.opacity=m.sparkle;
+  document.getElementById('gSalute').style.opacity=m.salute;
+  document.getElementById('gStop').style.opacity=m.stop;
+  const bubble=document.getElementById('guardBubble');
+  if(speech){bubble.textContent=speech;bubble.className=name==='angry'?'guard-bubble angry':'guard-bubble'}
+}
+
+let current=0, wrongCount=0;
+
+function buildProgress(){
+  const wrap=document.getElementById('progressWrap');wrap.innerHTML='';
+  questions.forEach((_,i)=>{const d=document.createElement('div');d.className='prog-dot'+(i<current?' done':'');wrap.appendChild(d)});
+}
+
+function renderQuestion(){
+  const q=questions[current];wrongCount=0;
+  document.getElementById('triesWrap').className='tries-wrap';
+  const qEl=document.getElementById('qText');
+  qEl.style.opacity=0;
+  setTimeout(()=>{qEl.textContent=q.q;qEl.style.opacity=1},180);
+  const opts=document.getElementById('options');opts.innerHTML='';
+  q.opts.forEach((o,i)=>{
+    const btn=document.createElement('button');
+    btn.className='opt-btn fade-in';
+    btn.style.animationDelay=(i*0.07)+'s';
+    btn.textContent=o.text;
+    btn.onclick=()=>pick(q,o,i,btn);
+    opts.appendChild(btn);
+  });
+  buildProgress();
+}
+
+function pick(q,opt,idx,btn){
+  const btns=document.querySelectorAll('.opt-btn');
+  btns.forEach(b=>b.disabled=true);
+
+  if(idx===q.correct){
+    btn.classList.add('correct');
+    setFace(opt.mood);
+    setGuard(opt.mood,opt.reaction);
+    document.getElementById('triesWrap').className='tries-wrap';
+    setTimeout(()=>{
+      current++;
+      if(current>=questions.length) showReveal();
+      else renderQuestion();
+    },1100);
+  } else {
+    // WRONG ANSWER
+    wrongCount++;
+    btn.classList.add('wrong');
+    setFace('angry');
+    const roasts=q.wrongReactions;
+    const roast=roasts[(wrongCount-1)%roasts.length];
+    setGuard('angry',roast);
+    const tw=document.getElementById('triesWrap');
+    tw.textContent=wrongCount===1?'❌ Wrong! The guard is not amused. Try again...':`❌ Attempt ${wrongCount} failed! The guard grows impatient...`;
+    tw.className='tries-wrap show';
+    // re-enable other buttons after brief delay
+    setTimeout(()=>{
+      btns.forEach(b=>{
+        b.disabled=false;
+        if(b===btn){b.classList.remove('wrong');b.classList.add('dimmed')}
+      });
+      setGuard('suspicious','Hmm... try again. Carefully this time. 👀');
+      setFace('suspicious');
+    },1200);
+  }
+}
+
+function showReveal(){
+  setFace('excited');
+  setGuard('excited','Access granted! Welcome to the royal celebration! ✦');
+  setTimeout(()=>document.getElementById('revealOverlay').classList.add('show'),500);
+}
+
+setFace('suspicious');
+setGuard('suspicious','State your business at the royal gates...');
+renderQuestion();
+</script>
+</body>
+</html>
+HTMLEOF
+echo "gate done"

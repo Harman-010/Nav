@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday, Nav 👑</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:5rem 2rem 4rem;background:linear-gradient(160deg,var(--cream) 0%,var(--cream2) 50%,var(--cream3) 100%);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(184,134,11,0.04) 1px,transparent 1px);background-size:24px 24px}
+.hero-content{position:relative;z-index:1}
+.hero-pre{font-size:10px;letter-spacing:0.55em;color:var(--gold);text-transform:uppercase;margin-bottom:3rem;animation:fadeUp 1s ease both}
+.hero-name{font-family:'Playfair Display',serif;font-size:clamp(4rem,12vw,8rem);font-weight:400;color:var(--dark);line-height:0.95;letter-spacing:0.06em;animation:fadeUp 1s 0.2s ease both;font-style:italic}
+.hero-tagline{font-size:10px;letter-spacing:0.4em;color:var(--gold-dim);text-transform:uppercase;margin-top:0.75rem;animation:fadeUp 1s 0.35s ease both}
+.hero-desc{font-family:'Playfair Display',serif;font-size:1.1rem;font-style:italic;color:var(--warm);max-width:420px;line-height:2;animation:fadeUp 1s 0.5s ease both;margin-top:1.5rem}
+.hero-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-top:2.5rem;animation:fadeUp 1s 0.7s ease both}
+
+/* CARDS */
+.pages-section{padding:5rem 2rem;text-align:center;background:#fff}
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5rem;margin-top:3rem;max-width:900px;margin-left:auto;margin-right:auto}
+.page-card{background:var(--cream2);border:0.5px solid var(--gold-dim);padding:2.25rem 2rem;text-align:center;text-decoration:none;color:inherit;display:block;transition:transform 0.3s,box-shadow 0.3s;position:relative;overflow:hidden}
+.page-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform 0.3s}
+.page-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(184,134,11,0.1)}
+.page-card:hover::after{transform:scaleX(1)}
+.card-icon{font-size:2.2rem;display:block;margin-bottom:1.25rem;opacity:0.75}
+.card-num{font-family:'Playfair Display',serif;font-size:0.75rem;font-style:italic;color:var(--gold-dim);margin-bottom:0.4rem;letter-spacing:0.2em}
+.card-title{font-family:'Playfair Display',serif;font-size:1.25rem;font-style:italic;color:var(--dark);margin-bottom:0.6rem}
+.card-desc{font-size:0.88rem;color:var(--warm);line-height:1.7;font-weight:300}
+.card-link{display:inline-block;margin-top:1rem;font-size:9px;letter-spacing:0.4em;text-transform:uppercase;color:var(--gold)}
+
+/* secret card styled differently */
+.secret-card{background:var(--dark);border-color:var(--gold-dim)}
+.secret-card .card-num,.secret-card .card-title{color:var(--gold)}
+.secret-card .card-desc{color:rgba(255,255,255,0.5)}
+.secret-card .card-link{color:var(--gold-light)}
+
+/* QUOTE */
+.quote-strip{padding:5rem 2rem;text-align:center;background:linear-gradient(135deg,var(--cream3),var(--cream2),var(--cream3));border-top:0.5px solid var(--gold-dim);border-bottom:0.5px solid var(--gold-dim)}
+.big-quote{font-family:'Playfair Display',serif;font-size:clamp(1.4rem,3.5vw,2rem);font-style:italic;color:var(--dark);max-width:640px;margin:0 auto;line-height:1.9}
+.quote-attr{margin-top:1.5rem;font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold)}
+
+/* TRAITS */
+.traits-section{padding:5rem 2rem;text-align:center;background:#fff}
+.traits-row{display:flex;justify-content:center;gap:3rem;flex-wrap:wrap;margin-top:3rem}
+.trait{text-align:center}
+.trait-icon{font-size:2rem;display:block;margin-bottom:0.6rem;opacity:0.65}
+.trait-name{font-family:'Playfair Display',serif;font-size:0.9rem;font-style:italic;color:var(--dark);margin-bottom:2px}
+.trait-desc{font-size:11px;color:var(--warm);letter-spacing:0.08em;font-weight:300}
+
+@media(max-width:600px){.hero-name{font-size:3.5rem}.cards-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">Nav ❧</a>
+  <ul class="nav-links">
+    <li><a href="index.html" class="active">Home</a></li>
+    <li><a href="wishes.html">Wishes</a></li>
+    <li><a href="memories.html">Memories</a></li>
+    <li><a href="secret-gate.html">🔒 Secret</a></li>
+  </ul>
+  <div class="nav-burger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="wishes.html">Wishes</a></li>
+    <li><a href="memories.html">Memories</a></li>
+    <li><a href="secret-gate.html">🔒 Secret</a></li>
+  </ul>
+</div>
+
+<div class="page">
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-pre">❧ &nbsp; A royal birthday celebration &nbsp; ❧</div>
+    <div class="frame-box" style="margin-bottom:2rem">
+      <div class="fc-tr"></div><div class="fc-bl"></div>
+      <div style="font-family:'Playfair Display',serif;font-size:1rem;font-style:italic;color:var(--gold);margin-bottom:0.4rem">celebrating the wonderful</div>
+      <div class="hero-name">Nav</div>
+      <div class="hero-tagline">Est. this beautiful day</div>
+    </div>
+    <p class="hero-desc">You passed the royal gates. The kingdom celebrates you today. 👑</p>
+    <div class="hero-btns">
+      <a href="wishes.html" class="btn-gold">Birthday Wishes ❧</a>
+      <a href="memories.html" class="btn-outline">Our Memories</a>
+    </div>
+  </div>
+</section>
+
+<section class="pages-section">
+  <div class="sec-label reveal">❧ &nbsp; explore your celebration &nbsp; ❧</div>
+  <h2 class="sec-title reveal">The royal birthday collection</h2>
+  <div class="rule reveal"><span></span><em>❧</em><span></span></div>
+  <div class="cards-grid">
+    <a href="wishes.html" class="page-card reveal">
+      <span class="card-icon">🌿</span>
+      <div class="card-num">Page one</div>
+      <div class="card-title">Birthday Wishes</div>
+      <p class="card-desc">Heartfelt wishes, a personal letter, and all the love in the world — just for you.</p>
+      <span class="card-link">Open →</span>
+    </a>
+    <a href="memories.html" class="page-card reveal">
+      <span class="card-icon">📷</span>
+      <div class="card-num">Page two</div>
+      <div class="card-title">Memories</div>
+      <p class="card-desc">A golden collection of moments, stories, and snapshots from our time together.</p>
+      <span class="card-link">Open →</span>
+    </a>
+    <a href="secret-gate.html" class="page-card secret-card reveal">
+      <span class="card-icon">🔒</span>
+      <div class="card-num">Hidden page</div>
+      <div class="card-title">Secret Chamber</div>
+      <p class="card-desc">A mysterious locked page. Enter if you dare — but the guard has questions first...</p>
+      <span class="card-link">Try to enter →</span>
+    </a>
+  </div>
+</section>
+
+<section class="quote-strip reveal">
+  <p class="big-quote">""Some people bring calm to your life; she brings a hurricane of laughter, music, and dramatic retellings. I wouldn't trade her chaotic genius for all the peace in the world."
+  <div class="quote-attr">❧ &nbsp; a royal truth &nbsp; ❧</div>
+</section>
+
+<section class="traits-section">
+  <div class="sec-label reveal">❧ &nbsp; things I know about You &nbsp; ❧</div>
+  <h2 class="sec-title reveal">The birthday girl, in a nutshell</h2>
+  <div class="rule reveal"><span></span><em>❧</em><span></span></div>
+  <div class="traits-row">
+    <div class="trait reveal"><span class="trait-icon">👑</span><div class="trait-name">Always right</div><div class="trait-desc">even when she isn't</div></div>
+    <div class="trait reveal"><span class="trait-icon">😂</span><div class="trait-name">Loudest laugh</div><div class="trait-desc">in any room, always</div></div>
+    <div class="trait reveal"><span class="trait-icon">🍕</span><div class="trait-name">Eats everything</div><div class="trait-desc">especially me</div></div>
+    <div class="trait reveal"><span class="trait-icon">💛</span><div class="trait-name">Golden heart</div><div class="trait-desc">beneath all the chaos</div></div>
+    <div class="trait reveal"><span class="trait-icon">⏰</span><div class="trait-name">Always late</div><div class="trait-desc">but worth the wait</div></div>
+  </div>
+</section>
+</div>
+
+<site-footer>
+  <div class="footer-name">Nav ❧</div>
+  <ul class="footer-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="wishes.html">Wishes</a></li>
+    <li><a href="memories.html">Memories</a></li>
+    <li><a href="secret-gate.html">🔒 Secret</a></li>
+  </ul>
+  <div class="footer-copy">❧ &nbsp; Happy Birthday &nbsp; ❧</div>
+</site-footer>
+
+<script>
+function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open')}
+const revs=document.querySelectorAll('.reveal');
+const io=new IntersectionObserver(e=>e.forEach(el=>{if(el.isIntersecting){el.target.classList.add('visible');io.unobserve(el.target)}}),{threshold:0.1});
+revs.forEach(r=>io.observe(r));
+</script>
+</body>
+</html>

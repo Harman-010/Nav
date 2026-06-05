@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Memories — Nav 👑</title>
+<link rel="stylesheet" href="style.css">
+<style>
+/* MEMORIES TIMELINE */
+.memories-section{padding:5rem 2rem;background:#fff}
+.timeline{max-width:780px;margin:3rem auto 0;position:relative}
+.timeline::before{content:'';position:absolute;left:50%;top:0;bottom:0;width:0.5px;background:var(--gold-dim);transform:translateX(-50%)}
+.memory-item{display:flex;gap:3rem;margin-bottom:4rem;position:relative;align-items:flex-start}
+.memory-item:nth-child(even){flex-direction:row-reverse}
+.memory-side{flex:1}
+.memory-dot{position:absolute;left:50%;top:1.5rem;transform:translateX(-50%);width:12px;height:12px;background:var(--cream2);border:1.5px solid var(--gold);border-radius:50%;z-index:1}
+.memory-card{background:var(--cream2);border:0.5px solid var(--gold-dim);padding:1.75rem;position:relative;transition:transform 0.3s,box-shadow 0.3s}
+.memory-card:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(184,134,11,0.1)}
+.memory-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1.5px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.memory-photo{width:100%;aspect-ratio:4/3;background:var(--cream3);border:0.5px solid var(--gold-dim);display:flex;align-items:center;justify-content:center;margin-bottom:1rem;position:relative;overflow:hidden}
+.memory-photo-inner{text-align:center;padding:1rem}
+.memory-photo-emoji{font-size:2.5rem;display:block;margin-bottom:0.5rem;opacity:0.5}
+.memory-photo-hint{font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold-dim)}
+.memory-tag{font-size:10px;letter-spacing:0.4em;text-transform:uppercase;color:var(--gold);margin-bottom:0.4rem}
+.memory-title{font-family:'Playfair Display',serif;font-size:1.1rem;font-style:italic;color:var(--dark);margin-bottom:0.5rem}
+.memory-text{font-size:0.88rem;color:var(--warm);line-height:1.8;font-weight:300}
+.memory-empty{flex:1}
+@media(max-width:680px){
+  .timeline::before{left:16px}
+  .memory-item,.memory-item:nth-child(even){flex-direction:column;padding-left:40px}
+  .memory-dot{left:16px;top:0.5rem}
+  .memory-empty{display:none}
+}
+
+/* GALLERY GRID */
+.gallery-section{padding:5rem 2rem;text-align:center;background:linear-gradient(160deg,var(--cream),var(--cream2),var(--cream3))}
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;max-width:780px;margin:3rem auto 0}
+.gallery-cell{aspect-ratio:1;background:var(--cream3);border:0.5px solid var(--gold-dim);display:flex;align-items:center;justify-content:center;transition:transform 0.3s;cursor:default;position:relative;overflow:hidden}
+.gallery-cell:hover{transform:scale(1.03);z-index:2}
+.gallery-cell-inner{text-align:center;padding:1rem}
+.gallery-cell-emoji{font-size:2rem;display:block;margin-bottom:0.4rem}
+.gallery-cell-label{font-size:9px;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold-dim)}
+.gallery-cell.tall{grid-row:span 2}
+.gallery-cell.wide{grid-column:span 2}
+.gallery-hint{font-size:0.82rem;color:var(--warm-dim);font-style:italic;margin-top:1.5rem;font-weight:300}
+
+/* QUOTE STRIP */
+.mem-quote{padding:5rem 2rem;text-align:center;background:var(--dark)}
+.mem-quote-text{font-family:'Playfair Display',serif;font-size:clamp(1.3rem,3.5vw,1.9rem);font-style:italic;color:var(--cream);max-width:600px;margin:0 auto;line-height:1.9;opacity:0.9}
+.mem-quote-attr{margin-top:1.5rem;font-size:10px;letter-spacing:0.35em;text-transform:uppercase;color:var(--gold)}
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">Nav ❧</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="wishes.html">Wishes</a></li>
+    <li><a href="memories.html" class="active">Memories</a></li>
+    <li><a href="secret-gate.html">🔒 Secret</a></li>
+  </ul>
+  <div class="nav-burger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="wishes.html">Wishes</a></li>
+    <li><a href="memories.html">Memories</a></li>
+    <li><a href="secret-gate.html">🔒 Secret</a></li>
+  </ul>
+</div>
+
+<div class="page">
+
+<section class="page-hero">
+  <div class="page-hero-content">
+    <span class="page-hero-icon">📷</span>
+    <div class="page-hero-label">❧ &nbsp; a golden archive &nbsp; ❧</div>
+    <h1 class="page-hero-title">Our Memories</h1>
+    <p class="page-hero-desc">Every moment worth remembering, collected and pressed between golden pages — just for you.</p>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section class="memories-section">
+  <div class="sec-label reveal" style="text-align:center">❧ &nbsp; the royal chronicle &nbsp; ❧</div>
+  <h2 class="sec-title reveal" style="text-align:center">Stories we've collected</h2>
+  <div class="rule reveal" style="margin-left:auto;margin-right:auto"><span></span><em>❧</em><span></span></div>
+  <div class="timeline">
+
+    <div class="memory-item reveal">
+      <div class="memory-side">
+        <div class="memory-card">
+          <div class="memory-photo">
+            <div class="memory-photo-inner">
+              <span class="memory-photo-emoji">📸</span>
+              <span class="memory-photo-hint">Add your photo here</span>
+            </div>
+          </div>
+          <div class="memory-tag">Memory one</div>
+          <div class="memory-title">The one where it all started</div>
+          <p class="memory-text">School, started taking by asking notebooks , now taking abot the things never thinked about.</p>
+        </div>
+      </div>
+      <div class="memory-dot"></div>
+      <div class="memory-empty"></div>
+    </div>
+
+    <div class="memory-item reveal">
+      <div class="memory-empty"></div>
+      <div class="memory-dot"></div>
+      <div class="memory-side">
+        <div class="memory-card">
+          <div class="memory-photo">
+            <div class="memory-photo-inner">
+              <span class="memory-photo-emoji">🌙</span>
+              <span class="memory-photo-hint">Add your photo here</span>
+            </div>
+          </div>
+          <div class="memory-tag">Memory two</div>
+          <div class="memory-title">That night that went way too long</div>
+          <p class="memory-text">You know the one. the night i didnt know what to talked about and whom to tell thst whats going on , but u was the one i told everything.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="memory-item reveal">
+      <div class="memory-side">
+        <div class="memory-card">
+          <div class="memory-photo">
+            <div class="memory-photo-inner">
+              <span class="memory-photo-emoji">😂</span>
+              <span class="memory-photo-hint">Add your photo here</span>
+            </div>
+          </div>
+          <div class="memory-tag">Memory three</div>
+          <div class="memory-title">The things we don't talk about</div>
+          <p class="memory-text">thank You for just being here , when i needed and putting me on right path even when i had taken the wrong road. </p>
+        </div>
+      </div>
+      <div class="memory-dot"></div>
+      <div class="memory-empty"></div>
+    </div>
+
+    <div class="memory-item reveal">
+      <div class="memory-side">
+        <div class="memory-card">
+          <div class="memory-photo">
+            <div class="memory-photo-inner">
+              <span class="memory-photo-emoji">💛</span>
+              <span class="memory-photo-hint">Add your photo here</span>
+            </div>
+          </div>
+          <div class="memory-tag">Memory four</div>
+          <div class="memory-title">When you really came through</div>
+          <p class="memory-text">U always showed up when i called and i think i am blessed to have a sis like you i my life.</p>
+        </div>
+      </div>
+      <div class="memory-dot"></div>
+      <div class="memory-empty"></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery-section">
+  <div class="sec-label reveal">❧ &nbsp; the royal gallery &nbsp; ❧</div>
+  <h2 class="sec-title reveal">A collection of moments</h2>
+  <div class="rule reveal"><span></span><em>❧</em><span></span></div>
+  <div class="gallery-grid reveal">
+    <div class="gallery-cell tall">
+      <div class="gallery-cell-inner"><span class="gallery-cell-emoji">📸</span><img src="photo1.jpeg" alt="memory"><span class="gallery-cell-label">Your best photo</span></div>
+    </div>
+    <div class="gallery-cell">
+      <div class="gallery-cell-inner"><span class="gallery-cell-emoji">🌿</span><img src="photo2.jpeg" alt="memory"><span class="gallery-cell-label">A calm moment</span></div>
+    </div>
+    <div class="gallery-cell">
+      <div class="gallery-cell-inner"><span class="gallery-cell-emoji">😂</span><img src="photo3.jpeg" alt="memory"><span class="gallery-cell-label">A chaotic one</span></div>
+    </div>
+    <div class="gallery-cell wide">
+      <div class="gallery-cell-inner"><span class="gallery-cell-emoji">🎉</span><img src="photo4.jpeg" alt="memory"><span class="gallery-cell-label">The best day</span></div>
+    </div>
+  
+  </div>
+  <p class="gallery-hint reveal">Happy Birthday bandriye</p>
+</section>
+
+<!-- QUOTE -->
+<section class="mem-quote">
+  <p class="mem-quote-text reveal">"Some memories don't fade with time — they just get warmer. These ones will."</p>
+  <div class="mem-quote-attr reveal">❧ &nbsp; a royal truth &nbsp; ❧</div>
+</section>
+
+<!-- CTA -->
+<section style="padding:4rem 2rem;text-align:center;background:#fff">
+  <div class="sec-label reveal">❧ &nbsp; keep going &nbsp; ❧</div>
+  <h2 class="sec-title reveal">There's still more</h2>
+  <div class="rule reveal"><span></span><em>❧</em><span></span></div>
+  <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-top:1.5rem">
+    <a href="wishes.html" class="btn-gold">Birthday Wishes ❧</a>
+    <a href="secret-gate.html" class="btn-outline">🔒 The Secret Chamber</a>
+  </div>
+</section>
+
+</div>
+
+<site-footer>
+  <div class="footer-name">Nav ❧</div>
+  <ul class="footer-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="wishes.html">Wishes</a></li>
+    <li><a href="memories.html">Memories</a></li>
+    <li><a href="secret-gate.html">🔒 Secret</a></li>
+  </ul>
+  <div class="footer-copy">❧ &nbsp; Happy Birthday &nbsp; ❧</div>
+</site-footer>
+
+<script>
+function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open')}
+const revs=document.querySelectorAll('.reveal');
+const io=new IntersectionObserver(e=>e.forEach(el=>{if(el.isIntersecting){el.target.classList.add('visible');io.unobserve(el.target)}}),{threshold:0.1});
+revs.forEach(r=>io.observe(r));
+</script>
+</body>
+</html>
